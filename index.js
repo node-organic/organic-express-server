@@ -12,8 +12,22 @@ module.exports = function(plasma, dna) {
         server: server
       })
     });
-    plasma.on(dna.closeOn || "kill", function(){
-      server.close()
+    var sockets = {}, nextSocketId = 0;
+    if(dna.forceConnectionsDestroyOnClose)
+      server.on('connection', function (socket) {
+        var socketId = nextSocketId++;
+        sockets[socketId] = socket;
+        socket.on('close', function () {
+          delete sockets[socketId];
+        });
+      })
+    plasma.on(dna.closeOn || "kill", function(c, next){
+      if(dna.forceConnectionsDestroyOnClose)
+        for (var socketId in sockets)
+          sockets[socketId].destroy();
+      server.close(function(){
+        next()
+      })
     })
   }
   if(dna.initScript) {

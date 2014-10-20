@@ -10,7 +10,8 @@ Organelle constructing expressjs app and opening http server listening port
       "logRunning": true,
       "initScript": "init-express-app", 
       "emitReady": "ExpressServer",
-      "closeOn": "kill"
+      "closeOn": "kill",
+      "forceConnectionsDestroyOnClose": false
     }
 
 ### `initScript` property
@@ -28,6 +29,10 @@ Invoking `next(err, app)` will complete express server initialization by start l
 ### `logRunning` property
 
 Optional, if provided will `console.log` when express server is listening for incoming requests.
+
+### `forceConnectionsDestroyOnClose` property
+
+Optional, if enabled on `kill` chemical all opened connections will be destroyed and server closed, otherwise the server will close when there are no longer open connections.
 
 ## `emitReady` chemical
 Emitted once express server is listening for incoming requests
