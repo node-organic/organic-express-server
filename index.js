@@ -14,15 +14,15 @@ module.exports = function (plasma, dna) {
       })
     }
     var server
-    if (typeof dna.host === 'string' && dna.host) {
-      if (typeof dna.backlog === 'number') {
-        server = app.listen(dna.port, dna.host, dna.backlog, callback)
-      } else {
-        server = app.listen(dna.port, dna.host, callback)
-      }
-    } else {
-      server = app.listen(dna.port, callback)
+    var args = [dna.port]
+    if (typeof dna.host === 'string') {
+      args.push(dna.host)
     }
+    if (typeof dna.backlog === 'number') {
+      args.push(dna.backlog)
+    }
+    args.push(callback)
+    server = app.listen.apply(app, args)
     var sockets = {}
     var nextSocketId = 0
     if (dna.forceConnectionsDestroyOnClose) {
