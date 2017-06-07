@@ -3,6 +3,7 @@ var path = require('path')
 
 module.exports = function (plasma, dna) {
   var completeAppInit = function (app) {
+    var server
     var callback = function () {
       if (dna.logRunning) {
         console.log('express server running on', (dna.host || '*') + ':' + dna.port)
@@ -13,7 +14,6 @@ module.exports = function (plasma, dna) {
         server: server
       })
     }
-    var server
     var args = [dna.port]
     if (typeof dna.host === 'string') {
       args.push(dna.host)
