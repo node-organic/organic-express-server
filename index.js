@@ -41,9 +41,7 @@ module.exports = function (plasma, dna) {
           sockets[socketId].destroy()
         }
       }
-      server.close(function () {
-        next()
-      })
+      server.close(next)
     })
   }
 
