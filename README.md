@@ -7,8 +7,10 @@ Organelle constructing expressjs app and opening http server listening port
     "organic-express-server": {
       "source": "node_modules/organic-express-server",
       "port": 1337,
+      "host": "127.0.0.1", // (String) if not defined = listen to all interfaces. https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback
+      "backlog": 511, // (Number) maximum length of the queue of pending connections. The actual length will be determined by the OS through sysctl settings such as `tcp_max_syn_backlog` and `somaxconn` on Linux. The default value of this parameter is 511 (not 512). https://nodejs.org/api/http.html#http_server_listen_port_hostname_backlog_callback
       "logRunning": true,
-      "initScript": "init-express-app", 
+      "initScript": "init-express-app",
       "emitReady": "ExpressServer",
       "closeOn": "kill",
       "forceConnectionsDestroyOnClose": false
