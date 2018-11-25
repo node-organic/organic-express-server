@@ -1,6 +1,6 @@
 {
   "name": "organic-express-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Organelle constructing expressjs app and opening http server listening port",
   "main": "index.js",
   "scripts": {
