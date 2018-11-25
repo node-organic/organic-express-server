@@ -8,6 +8,7 @@
     "preversion": "npm test",
     "release-patch": "npm version patch && npm publish",
     "release-minor": "npm version minor && npm publish",
+    "release-major": "npm version major && npm publish",
     "postversion": "git push origin master && git push origin master --tags"
   },
   "peerDependencies": {
@@ -22,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/outbounder/organic-express-server/issues"
   },
-  "homepage": "https://github.com/outbounder/organic-express-server"
+  "homepage": "https://github.com/outbounder/organic-express-server",
+  "devDependencies": {
+    "express": "^4.16.4"
+  }
 }
