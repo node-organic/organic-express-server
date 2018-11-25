@@ -5,8 +5,8 @@ module.exports = function (plasma, dna) {
   var completeAppInit = function (app) {
     var server
     var callback = function () {
-      if (dna.logRunning) {
-        console.log('express server running on', (dna.host || '*') + ':' + dna.port)
+      if (dna.log) {
+        console.log('express server running on', (dna.host || '*') + ':' + (dna.port || server.address().port))
       }
       plasma.emit({
         type: dna.emitReady || 'ExpressServer',
